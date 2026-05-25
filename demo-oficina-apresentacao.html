@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Oficina Exemplo Demonstração — A oficina de confiança no bairro, Recife. Serviço automotivo premium com honestidade, transparência e preço justo. Agende pelo WhatsApp.">
+<meta name="keywords" content="oficina mecânica Recife, oficina mecânica Boa Viagem, mecânico confiável Recife, revisão automotiva Recife, alinhamento balanceamento Recife">
+<meta property="og:title" content="Oficina Exemplo Demonstração — Recife">
+<meta property="og:description" content="15+ anos de confiança no bairro. Honestidade, transparência e qualidade premium para o seu carro.">
+<title>Oficina Exemplo Demonstração | Boa Viagem — Recife</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080808;
+  --dark: #0f0f0f;
+  --dark-2: #161616;
+  --dark-3: #1e1e1e;
+  --graphite: #2a2a2a;
+  --silver: #9a9a9a;
+  --silver-light: #c8c8c8;
+  --white: #f0ede8;
+  --red: #c0392b;
+  --red-bright: #e74c3c;
+  --red-glow: rgba(192,57,43,0.3);
+  --gold: #b8963e;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-sans: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--red-bright);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  transform: translate(-50%,-50%);
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(192,57,43,0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.35s ease, width 0.3s, height 0.3s, border-color 0.3s;
+  transform: translate(-50%,-50%);
+}
+@media (max-width:768px) { .cursor, .cursor-ring { display: none; } body { cursor: auto; } }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(8,8,8,0.96);
+  backdrop-filter: blur(20px);
+  padding: 14px 40px;
+  border-bottom: 1px solid rgba(192,57,43,0.15);
+}
+.nav-logo {
+  display: flex; flex-direction: column;
+  text-decoration: none;
+}
+.nav-logo-main {
+  font-family: var(--font-sans);
+  font-size: 13px; font-weight: 800;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--white);
+}
+.nav-logo-sub {
+  font-family: var(--font-display);
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--red-bright);
+}
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--silver);
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--red-bright);
+  transform: scaleX(0); transition: transform 0.3s ease;
+  transform-origin: left;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta {
+  background: var(--red);
+  color: var(--white) !important;
+  padding: 10px 22px;
+  border-radius: 2px;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--red-bright) !important; transform: translateY(-1px); }
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 1.5px;
+  background: var(--white); transition: all 0.3s;
+}
+.mobile-menu {
+  display: none;
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(8,8,8,0.98);
+  backdrop-filter: blur(20px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-sans); font-size: 15px;
+  font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+  transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--red-bright); }
+.mobile-close {
+  position: absolute; top: 24px; right: 36px;
+  background: none; border: none; color: var(--white);
+  font-size: 28px; cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  nav { padding: 18px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 0 40px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(192,57,43,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(184,150,62,0.04) 0%, transparent 50%),
+    linear-gradient(180deg, #080808 0%, #0d0d0d 50%, #080808 100%);
+}
+
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-lines {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 50%; opacity: 0.03;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 40px,
+    rgba(255,255,255,1) 40px, rgba(255,255,255,1) 41px
+  );
+}
+
+.hero-number {
+  position: absolute; right: 60px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(120px, 20vw, 280px);
+  font-weight: 300; line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(192,57,43,0.12);
+  user-select: none; pointer-events: none;
+  letter-spacing: -10px;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 760px;
+}
+
+.hero-label {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero-label-line {
+  width: 40px; height: 1px; background: var(--red-bright);
+}
+.hero-label-text {
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red-bright);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 7vw, 96px);
+  font-weight: 300; line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 10px;
+  opacity: 0; animation: fadeUp 0.9s ease 0.4s forwards;
+}
+.hero-title em {
+  font-style: italic; color: var(--red-bright);
+  font-weight: 400;
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--silver-light);
+  margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 0.9s ease 0.55s forwards;
+}
+
+.hero-desc {
+  font-family: var(--font-body);
+  font-size: 15px; font-weight: 300;
+  color: var(--silver); line-height: 1.8;
+  max-width: 520px; margin-bottom: 44px;
+  opacity: 0; animation: fadeUp 0.9s ease 0.7s forwards;
+}
+
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.9s ease 0.85s forwards;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--red);
+  color: var(--white);
+  padding: 16px 32px;
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  text-decoration: none; border: none; border-radius: 2px;
+  cursor: pointer; transition: all 0.3s;
+}
+.btn-primary:hover {
+  background: var(--red-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(192,57,43,0.4);
+}
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent;
+  color: var(--white);
+  padding: 16px 32px;
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 2px;
+  cursor: pointer; transition: all 0.3s;
+}
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  position: absolute; bottom: 50px; left: 40px; right: 40px;
+  display: flex; gap: 48px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1s ease 1.1s forwards;
+}
+
+.hero-stat {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.hero-stat-number {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 400;
+  color: var(--white); line-height: 1;
+}
+.hero-stat-number span { color: var(--red-bright); }
+.hero-stat-label {
+  font-family: var(--font-sans);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--silver);
+}
+
+.hero-scroll {
+  position: absolute; bottom: 50px; right: 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeUp 1s ease 1.3s forwards;
+}
+.hero-scroll-text {
+  font-family: var(--font-sans);
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--silver);
+  writing-mode: vertical-rl;
+}
+.hero-scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--red-bright), transparent);
+  animation: scrollLine 2s ease infinite;
+}
+
+@keyframes scrollLine {
+  0%,100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.3; transform: scaleY(0.5); }
+}
+
+/* SECTIONS COMMON */
+section { position: relative; overflow: hidden; }
+
+.section-label {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 16px;
+}
+.section-label-line {
+  width: 32px; height: 1px; background: var(--red-bright);
+}
+.section-label-text {
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red-bright);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--white);
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 15px; font-weight: 300;
+  color: var(--silver); line-height: 1.8;
+  max-width: 560px;
+}
+
+/* ABOUT */
+.about {
+  padding: 120px 40px;
+  background: var(--dark);
+}
+
+.about-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 100px;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+}
+
+.about-img-frame {
+  position: relative;
+  background: var(--dark-3);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 40px;
+  border-radius: 3px;
+}
+
+.about-img-inner {
+  background: linear-gradient(135deg, var(--graphite) 0%, var(--dark-3) 100%);
+  height: 360px;
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+.about-icon-big {
+  font-size: 90px; opacity: 0.15;
+}
+
+.about-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(192,57,43,0.06) 100%);
+}
+
+.about-badge {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--red);
+  padding: 20px 24px;
+  text-align: center;
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(192,57,43,0.4);
+}
+.about-badge-num {
+  font-family: var(--font-display);
+  font-size: 44px; font-weight: 400;
+  color: var(--white); line-height: 1;
+}
+.about-badge-text {
+  font-family: var(--font-sans);
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+
+.about-content { }
+
+.about-text {
+  font-size: 15px; font-weight: 300;
+  color: var(--silver); line-height: 1.9;
+  margin: 24px 0 40px;
+}
+
+.about-text strong {
+  color: var(--white); font-weight: 400;
+}
+
+.about-values {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+
+.about-value {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.about-value:hover {
+  border-color: rgba(192,57,43,0.25);
+  background: rgba(192,57,43,0.03);
+}
+.about-value-icon { font-size: 18px; margin-top: 2px; }
+.about-value-text {
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--silver-light);
+}
+
+/* SERVICES */
+.services {
+  padding: 120px 40px;
+  background: var(--black);
+}
+
+.services-inner { max-width: 1200px; margin: 0 auto; }
+
+.services-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 64px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2px;
+}
+
+.service-card {
+  position: relative; overflow: hidden;
+  background: var(--dark-2);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 40px 32px;
+  transition: all 0.4s ease;
+  cursor: default;
+}
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--red);
+  transform: scaleX(0); transition: transform 0.4s ease;
+  transform-origin: left;
+}
+.service-card:hover {
+  background: var(--dark-3);
+  transform: translateY(-4px);
+  z-index: 1;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.service-card:hover::before { transform: scaleX(1); }
+
+.service-num {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 400;
+  color: var(--red-bright); opacity: 0.6;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.service-icon {
+  font-size: 32px; margin-bottom: 16px;
+  display: block;
+  transition: transform 0.3s;
+}
+.service-card:hover .service-icon { transform: scale(1.1); }
+
+.service-name {
+  font-family: var(--font-sans);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--white); margin-bottom: 10px;
+}
+
+.service-desc {
+  font-size: 13px; font-weight: 300;
+  color: var(--silver); line-height: 1.7;
+}
+
+.service-arrow {
+  position: absolute; bottom: 24px; right: 24px;
+  color: var(--red-bright); font-size: 16px;
+  opacity: 0; transition: opacity 0.3s, transform 0.3s;
+}
+.service-card:hover .service-arrow { opacity: 1; transform: translateX(4px); }
+
+/* DIFFERENTIALS */
+.diffs {
+  padding: 120px 40px;
+  background: var(--dark);
+}
+
+.diffs-inner { max-width: 1200px; margin: 0 auto; }
+
+.diffs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px; margin-top: 64px;
+}
+
+.diff-card {
+  text-align: center;
+  padding: 44px 24px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 3px;
+  transition: all 0.4s;
+  position: relative; overflow: hidden;
+}
+.diff-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(192,57,43,0.08) 0%, transparent 70%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.diff-card:hover {
+  border-color: rgba(192,57,43,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.diff-card:hover::after { opacity: 1; }
+
+.diff-icon {
+  font-size: 40px; margin-bottom: 20px;
+  display: block; position: relative; z-index: 1;
+}
+.diff-title {
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); margin-bottom: 12px;
+  position: relative; z-index: 1;
+}
+.diff-text {
+  font-size: 13px; font-weight: 300;
+  color: var(--silver); line-height: 1.7;
+  position: relative; z-index: 1;
+}
+
+/* REVIEWS */
+.reviews {
+  padding: 120px 40px;
+  background: var(--black);
+  position: relative;
+}
+
+.reviews::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(192,57,43,0.4), transparent);
+}
+
+.reviews-inner { max-width: 1200px; margin: 0 auto; }
+
+.reviews-header {
+  text-align: center; margin-bottom: 20px;
+}
+
+.reviews-rating {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin: 20px 0 64px;
+}
+.reviews-stars { font-size: 20px; letter-spacing: 3px; }
+.reviews-score {
+  font-family: var(--font-display);
+  font-size: 48px; font-weight: 300;
+  color: var(--white);
+}
+.reviews-count {
+  font-family: var(--font-body);
+  font-size: 13px; color: var(--silver);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.review-card {
+  background: var(--dark-2);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 32px;
+  border-radius: 3px;
+  transition: all 0.3s;
+  position: relative;
+}
+.review-card::before {
+  content: '"';
+  position: absolute; top: -20px; left: 24px;
+  font-family: var(--font-display);
+  font-size: 100px; line-height: 1;
+  color: var(--red);
+  opacity: 0.12;
+}
+.review-card:hover {
+  border-color: rgba(192,57,43,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.5);
+}
+
+.review-stars { font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+
+.review-text {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 300;
+  font-style: italic;
+  color: var(--silver-light); line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.review-author {
+  display: flex; align-items: center; gap: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 16px;
+}
+.review-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red) 0%, var(--graphite) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-sans); font-size: 13px;
+  font-weight: 700; color: var(--white);
+  flex-shrink: 0;
+}
+.review-name {
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  color: var(--white);
+}
+.review-date {
+  font-size: 11px; color: var(--silver);
+}
+
+/* TEAM */
+.team {
+  padding: 120px 40px;
+  background: var(--dark);
+}
+.team-inner { max-width: 1200px; margin: 0 auto; }
+.team-header { text-align: center; margin-bottom: 64px; }
+.team-header .section-label { justify-content: center; }
+
+.team-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+
+.team-card {
+  background: var(--dark-2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 3px; overflow: hidden;
+  transition: all 0.4s;
+}
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  border-color: rgba(192,57,43,0.2);
+}
+.team-card-img {
+  height: 220px;
+  background: linear-gradient(135deg, var(--graphite) 0%, var(--dark-3) 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.team-card-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(8,8,8,0.6));
+}
+.team-icon { font-size: 60px; opacity: 0.2; }
+.team-card-body { padding: 24px; }
+.team-name {
+  font-family: var(--font-sans);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--white); margin-bottom: 6px;
+}
+.team-role {
+  font-size: 12px; color: var(--red-bright);
+  font-family: var(--font-sans);
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.team-bio {
+  font-size: 13px; font-weight: 300;
+  color: var(--silver); line-height: 1.7;
+}
+
+/* CTA / AGENDAMENTO */
+.cta-section {
+  padding: 120px 40px;
+  background: var(--black);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 50%, rgba(192,57,43,0.07) 0%, transparent 70%);
+}
+.cta-section::before, .cta-section::after {
+  content: '';
+  position: absolute; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(192,57,43,0.4), transparent);
+}
+.cta-section::before { top: 0; }
+.cta-section::after { bottom: 0; }
+
+.cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+.cta-label {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red-bright); margin-bottom: 24px;
+}
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--white); margin-bottom: 20px;
+}
+.cta-title em { font-style: italic; color: var(--red-bright); }
+
+.cta-text {
+  font-size: 15px; font-weight: 300;
+  color: var(--silver); line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+.btn-whatsapp {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: #25D366;
+  color: #fff;
+  padding: 20px 44px;
+  font-family: var(--font-sans);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px;
+  transition: all 0.3s;
+  box-shadow: 0 0 40px rgba(37,211,102,0.2);
+}
+.btn-whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 60px rgba(37,211,102,0.35);
+  background: #20ba5c;
+}
+.btn-whatsapp svg { width: 22px; height: 22px; }
+
+.cta-note {
+  margin-top: 20px;
+  font-size: 12px; color: var(--silver);
+  font-style: italic;
+}
+
+/* FAQ */
+.faq {
+  padding: 120px 40px;
+  background: var(--dark);
+}
+.faq-inner { max-width: 800px; margin: 0 auto; }
+.faq-header { margin-bottom: 60px; }
+
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.faq-q {
+  width: 100%; background: none; border: none;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 0; cursor: pointer;
+  text-align: left;
+}
+.faq-q-text {
+  font-family: var(--font-sans);
+  font-size: 14px; font-weight: 600;
+  color: var(--white); letter-spacing: 0.5px;
+}
+.faq-icon {
+  width: 24px; height: 24px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--red-bright); font-size: 14px;
+  flex-shrink: 0; transition: all 0.3s;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--red-bright); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 24px; }
+.faq-a-text {
+  font-size: 14px; font-weight: 300;
+  color: var(--silver); line-height: 1.8;
+}
+
+/* CONTACT */
+.contact {
+  padding: 120px 40px;
+  background: var(--black);
+}
+.contact-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+}
+
+.contact-info { }
+
+.contact-detail {
+  display: flex; gap: 20px; align-items: flex-start;
+  margin-bottom: 36px;
+}
+.contact-detail-icon {
+  width: 44px; height: 44px;
+  background: rgba(192,57,43,0.1);
+  border: 1px solid rgba(192,57,43,0.2);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.contact-detail-label {
+  font-family: var(--font-sans);
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--red-bright); margin-bottom: 6px;
+}
+.contact-detail-value {
+  font-size: 14px; font-weight: 300;
+  color: var(--silver-light); line-height: 1.6;
+}
+
+.contact-buttons {
+  display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap;
+}
+.btn-call {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--dark-3);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+  padding: 14px 28px;
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px;
+  transition: all 0.3s;
+}
+.btn-call:hover {
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+.contact-map {
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+.contact-map iframe {
+  width: 100%; height: 400px;
+  border: none; filter: grayscale(60%) contrast(1.1) brightness(0.6);
+}
+.contact-map-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.8), transparent);
+  padding: 20px;
+}
+.contact-map-name {
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white);
+}
+.contact-map-addr {
+  font-size: 12px; color: var(--silver); margin-top: 4px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 60px 40px 30px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px; margin-bottom: 48px;
+}
+.footer-brand-name {
+  font-family: var(--font-sans);
+  font-size: 14px; font-weight: 800;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--white); margin-bottom: 6px;
+}
+.footer-brand-sub {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red-bright); margin-bottom: 16px;
+}
+.footer-brand-text {
+  font-size: 13px; font-weight: 300;
+  color: var(--silver); line-height: 1.8;
+  max-width: 320px;
+}
+.footer-col-title {
+  font-family: var(--font-sans);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--white); margin-bottom: 20px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  font-size: 13px; font-weight: 300;
+  color: var(--silver); text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy {
+  font-size: 11px; color: var(--silver);
+}
+.footer-rights {
+  font-size: 11px; color: var(--silver);
+}
+
+/* FLOATING WHATSAPP */
+.float-wa {
+  position: fixed; bottom: 32px; right: 32px; z-index: 900;
+  width: 60px; height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  text-decoration: none;
+  animation: floatPulse 3s ease infinite;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.float-wa:hover {
+  transform: scale(1.12);
+  box-shadow: 0 12px 48px rgba(37,211,102,0.55);
+  animation: none;
+}
+.float-wa svg { width: 28px; height: 28px; fill: #fff; }
+.float-wa-label {
+  position: absolute; right: 72px;
+  background: var(--dark-3);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px; border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  color: var(--white); white-space: nowrap;
+  opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
+.float-wa:hover .float-wa-label { opacity: 1; }
+
+@keyframes floatPulse {
+  0%,100% { box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 8px 60px rgba(37,211,102,0.65); }
+}
+
+/* REVEAL ANIMATION */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1; transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .diffs-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 0 24px; }
+  .hero-stats { left: 24px; right: 24px; gap: 28px; }
+  .hero-scroll { display: none; }
+  .hero-number { font-size: 120px; right: 0; opacity: 0.5; }
+  .about { padding: 80px 24px; }
+  .about-inner { grid-template-columns: 1fr; gap: 60px; }
+  .about-values { grid-template-columns: 1fr; }
+  .services { padding: 80px 24px; }
+  .services-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .diffs { padding: 80px 24px; }
+  .diffs-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .reviews { padding: 80px 24px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .team { padding: 80px 24px; }
+  .team-grid { grid-template-columns: 1fr; }
+  .cta-section { padding: 80px 24px; }
+  .faq { padding: 80px 24px; }
+  .contact { padding: 80px 24px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  footer { padding: 48px 24px 24px; }
+  .footer-top { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .float-wa { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+  .float-wa svg { width: 24px; height: 24px; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .diffs-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div style="position:fixed;top:0;left:0;right:0;z-index:9000;background:rgba(192,57,43,0.92);backdrop-filter:blur(8px);text-align:center;padding:8px 16px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;">
+  ⚠️ Site de Demonstração — Conteúdo fictício para aprovação · Não divulgar publicamente
+</div>
+<div style="height:36px"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="#" target="_blank" class="float-wa" aria-label="WhatsApp">
+  <span class="float-wa-label">Agendar agora</span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main">Oficina Exemplo</span>
+    <span class="nav-logo-sub">Oficina Mecânica</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#avaliacoes">Avaliações</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#" target="_blank" class="nav-cta">Agendar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#sobre" class="mobile-link">Sobre</a>
+  <a href="#servicos" class="mobile-link">Serviços</a>
+  <a href="#diferenciais" class="mobile-link">Diferenciais</a>
+  <a href="#avaliacoes" class="mobile-link">Avaliações</a>
+  <a href="#contato" class="mobile-link">Contato</a>
+  <a href="#" target="_blank" style="color:#25D366 !important;">📱 WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-number">15</div>
+
+  <div class="hero-content">
+    <div class="hero-label">
+      <span class="hero-label-line"></span>
+      <span class="hero-label-text">Bairro · Cidade — UF</span>
+    </div>
+    <h1 class="hero-title">A oficina de<br><em>confiança</em> na sua cidade.</h1>
+    <p class="hero-subtitle">Honestidade que você pode ver.<br>Qualidade que você pode sentir.</p>
+    <p class="hero-desc">Há mais de 15 anos cuidando dos veículos de quem valoriza transparência, atendimento humano e um serviço feito com orgulho. Somos a referência que Boa Viagem conhece e confia.</p>
+    <div class="hero-actions">
+      <a href="#" target="_blank" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#servicos" class="btn-secondary">Ver Serviços →</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-number">15<span>+</span></div>
+      <div class="hero-stat-label">Anos de mercado</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">4.8<span>★</span></div>
+      <div class="hero-stat-label">Avaliação Google</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-number">100<span>%</span></div>
+      <div class="hero-stat-label">Diagnóstico honesto</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="hero-scroll-text">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-img-frame">
+        <div class="about-img-inner" style="flex-direction:column;gap:12px;">
+          <div style="border:2px dashed rgba(255,255,255,0.2);border-radius:4px;padding:24px 40px;text-align:center;">
+            <div style="font-size:36px;opacity:0.3;margin-bottom:10px;">🖼️</div>
+            <div style="font-family:var(--font-sans);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);">IMAGEM DA OFICINA</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:6px;">Foto real aqui</div>
+          </div>
+          <div class="about-img-overlay"></div>
+        </div>
+      </div>
+      <div class="about-badge">
+        <div class="about-badge-num">15+</div>
+        <div class="about-badge-text">Anos de excelência</div>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <div class="section-label reveal">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">Nossa história</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">Uma oficina<br>diferente das outras.</h2>
+      <p class="about-text reveal reveal-delay-2">
+        Fundada com a missão de ser <strong>a oficina que os clientes merecem</strong> — não a que eles temem — a Oficina Exemplo Demonstração nasceu no bairro, Recife, com um compromisso simples: <strong>honestidade acima de tudo</strong>.
+        <br><br>
+        Sob a liderança de <strong>Sr. Nome do Proprietário</strong>, que está sempre presente na oficina, construímos uma reputação rara no mercado automotivo: a de uma equipe que explica tudo o que precisa ser feito, cobra o que é justo e entrega o que promete. Nossos mecânicos, como o <strong>Nome do Mecânico 1</strong> e o <strong>Nome do Mecânico 2</strong>, são profissionais com anos de estrada que tratam o seu carro como se fosse o deles.
+        <br><br>
+        Clientes que chegam pela primeira vez acabam para a vida toda. Isso não é sorte — é o resultado de 15 anos de respeito, cuidado e trabalho bem feito.
+      </p>
+      <div class="about-values reveal reveal-delay-3">
+        <div class="about-value">
+          <span class="about-value-icon">🛡️</span>
+          <span class="about-value-text">Honestidade radical</span>
+        </div>
+        <div class="about-value">
+          <span class="about-value-icon">🔍</span>
+          <span class="about-value-text">Diagnóstico transparente</span>
+        </div>
+        <div class="about-value">
+          <span class="about-value-icon">⭐</span>
+          <span class="about-value-text">Qualidade acima da média</span>
+        </div>
+        <div class="about-value">
+          <span class="about-value-icon">🤝</span>
+          <span class="about-value-text">Atendimento humanizado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="services-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-label reveal">
+          <span class="section-label-line"></span>
+          <span class="section-label-text">O que fazemos</span>
+        </div>
+        <h2 class="section-title reveal reveal-delay-1">Serviços premium<br>para o seu veículo.</h2>
+      </div>
+      <a href="#" target="_blank" class="btn-secondary reveal reveal-delay-2">Agendar serviço →</a>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <span class="service-icon">🔄</span>
+        <div class="service-name">Revisão Automotiva</div>
+        <div class="service-desc">Revisão completa com checklist detalhado e relatório honesto do estado do seu veículo.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <span class="service-icon">⚖️</span>
+        <div class="service-name">Alinhamento e Balanceamento</div>
+        <div class="service-desc">Precisão milimétrica para maior segurança, conforto e preservação dos seus pneus.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <span class="service-icon">🚗</span>
+        <div class="service-name">Suspensão</div>
+        <div class="service-desc">Diagnóstico e reparo de suspensão com peças de qualidade e mão de obra especializada.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">04</div>
+        <span class="service-icon">🛑</span>
+        <div class="service-name">Sistema de Freios</div>
+        <div class="service-desc">Sua segurança em primeiro lugar. Troca de pastilhas, discos e fluido de freio.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <span class="service-icon">💧</span>
+        <div class="service-name">Troca de Óleo</div>
+        <div class="service-desc">Óleo certo para o seu motor, na quantidade certa, na hora certa. Rapidez e cuidado.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">06</div>
+        <span class="service-icon">🖥️</span>
+        <div class="service-name">Diagnóstico Eletrônico</div>
+        <div class="service-desc">Equipamentos modernos para identificar com precisão o que seu carro precisa — sem achismos.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">07</div>
+        <span class="service-icon">🛠️</span>
+        <div class="service-name">Manutenção Preventiva</div>
+        <div class="service-desc">Evite surpresas caras. Manutenção regular para seu carro sempre em dia e com segurança.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">08</div>
+        <span class="service-icon">⚙️</span>
+        <div class="service-name">Motor</div>
+        <div class="service-desc">Reparos e manutenção de motor com técnicos experientes e peças de procedência garantida.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">09</div>
+        <span class="service-icon">❄️</span>
+        <div class="service-name">Ar-Condicionado</div>
+        <div class="service-desc">Revisão, recarga e manutenção do ar-condicionado. Conforto no calor da cidade.</div>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">10</div>
+        <span class="service-icon">⚡</span>
+        <div class="service-name">Injeção Eletrônica</div>
+        <div class="service-desc">Diagnóstico e reparo de injeção eletrônica com tecnologia de ponta e precisão absoluta.</div>
+        <span class="service-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIALS -->
+<section class="diffs" id="diferenciais">
+  <div class="diffs-inner">
+    <div style="text-align:center; margin-bottom:0">
+      <div class="section-label reveal" style="justify-content:center">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">Por que escolher a Oficina Exemplo</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center">A diferença que<br><em style="font-style:italic; color:var(--red-bright)">você sente</em> na primeira visita.</h2>
+    </div>
+
+    <div class="diffs-grid">
+      <div class="diff-card reveal">
+        <span class="diff-icon">🛡️</span>
+        <div class="diff-title">Honestidade Radical</div>
+        <div class="diff-text">Falamos a verdade sobre o que seu carro precisa — nem mais, nem menos. Nossa reputação vale mais do que qualquer serviço desnecessário.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-1">
+        <span class="diff-icon">🔍</span>
+        <div class="diff-title">Diagnóstico Transparente</div>
+        <div class="diff-text">Você entende o que está sendo feito. Explicamos cada passo, mostramos as peças e aprovamos tudo com você antes de começar.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-2">
+        <span class="diff-icon">💰</span>
+        <div class="diff-title">Preço Justo</div>
+        <div class="diff-text">Não somos os mais baratos — somos os mais justos. Cobramos o valor correto pelo serviço correto. Sem surpresas na hora de pagar.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-3">
+        <span class="diff-icon">⚡</span>
+        <div class="diff-title">Serviço Rápido</div>
+        <div class="diff-text">Respeitamos o seu tempo. Entregamos no prazo combinado, com qualidade, sem enrolação e com a eficiência que seu dia exige.</div>
+      </div>
+      <div class="diff-card reveal">
+        <span class="diff-icon">👨‍🔧</span>
+        <div class="diff-title">Equipe Experiente</div>
+        <div class="diff-text">Mecânicos com anos de mercado, aperfeiçoados em técnicas modernas. Profissionais que conhecem cada parafuso do seu veículo.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-1">
+        <span class="diff-icon">☕</span>
+        <div class="diff-title">Conforto na Espera</div>
+        <div class="diff-text">Sala de espera com ar-condicionado, banheiro e aquele café especial que transforma a espera em um momento agradável.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-2">
+        <span class="diff-icon">🤝</span>
+        <div class="diff-title">Atendimento Humano</div>
+        <div class="diff-text">Tratamos mulheres e homens com igual respeito e atenção. Aqui você não é um número — é parte da nossa família de clientes.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-3">
+        <span class="diff-icon">📍</span>
+        <div class="diff-title">Referência em Recife</div>
+        <div class="diff-text">Mais de 15 anos como referência no bairro. Clientes de toda a cidade nos escolhem — e voltam. Isso diz tudo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="avaliacoes">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <div class="section-label reveal" style="justify-content:center">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">Avaliações reais</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">O que nossos clientes<br>dizem sobre nós.</h2>
+    </div>
+
+    <div class="reviews-rating reveal reveal-delay-2">
+      <span class="reviews-stars">⭐⭐⭐⭐⭐</span>
+      <span class="reviews-score">4.8</span>
+      <div>
+        <div class="reviews-count">no Google</div>
+        <div class="reviews-count">+70 avaliações</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Serviço de qualidade e transparência. Identificaram que meus pneus estavam fora do prazo e me orientaram honestamente. Ganharam um cliente para o resto da vida."</p>
+        <div class="review-author">
+          <div class="review-avatar">R</div>
+          <div>
+            <div class="review-name">Rafael S.</div>
+            <div class="review-date">Google Maps · 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Nesse mercado é muito difícil encontrar alguém honesto, que resolve bem os problemas e tem valores justos. Fui muito bem atendido pelo Nome do Mecânico 2 e pelo Nome do Proprietário."</p>
+        <div class="review-author">
+          <div class="review-avatar">R</div>
+          <div>
+            <div class="review-name">Rodrigo Cunha</div>
+            <div class="review-date">Google Maps · Local Guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Serviço sensacional. Atendimento excelente, funcionários preparados e comprometidos. O dono foi extremamente solícito e entregou além do necessário para resolver o problema."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Aisha Rabelo</div>
+            <div class="review-date">Google Maps · Local Guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Já faz uns 15 anos que utilizamos os serviços do Oficina Exemplo. O proprietário Nome do Proprietário é extremamente atencioso e excelente profissional, igualmente todos seus funcionários."</p>
+        <div class="review-author">
+          <div class="review-avatar">N</div>
+          <div>
+            <div class="review-name">Neuma Nascimento</div>
+            <div class="review-date">Google Maps · 548 avaliações</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Na minha opinião, a melhor oficina de Recife. Hoje em dia é difícil achar um mecânico de confiança, que faça um bom serviço e que tenha um preço justo. Superindico!"</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Anderson Soares</div>
+            <div class="review-date">Google Maps · Local Guide</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"Fiquei no prego em Recife e essa oficina me salvou! Rápido e preço justo! Uma das pouquíssimas oficinas onde confio de olhos fechados. Pode confiar."</p>
+        <div class="review-author">
+          <div class="review-avatar">T</div>
+          <div>
+            <div class="review-name">Tiago Andrada</div>
+            <div class="review-date">Google Maps · Local Guide</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="equipe">
+  <div class="team-inner">
+    <div class="team-header">
+      <div class="section-label reveal">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">Nossa equipe</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">Profissionais em quem<br>você pode confiar.</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="margin: 16px auto 0; text-align:center">Mecânicos experientes, atenciosos e comprometidos com a excelência — e com a sua segurança.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-card-img" style="flex-direction:column;gap:10px;">
+          <div style="border:2px dashed rgba(255,255,255,0.2);border-radius:4px;padding:18px 32px;text-align:center;">
+            <div style="font-size:28px;opacity:0.3;margin-bottom:8px;">🖼️</div>
+            <div style="font-family:var(--font-sans);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);">FOTO DO PROPRIETÁRIO</div>
+          </div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Nome do Proprietário</div>
+          <div class="team-role">Proprietário & Gerente</div>
+          <div class="team-bio">Sempre presente na oficina, Nome do Proprietário lidera pelo exemplo. Sua presença diária garante que cada cliente receba o melhor atendimento e total transparência em cada serviço.</div>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-card-img" style="flex-direction:column;gap:10px;">
+          <div style="border:2px dashed rgba(255,255,255,0.2);border-radius:4px;padding:18px 32px;text-align:center;">
+            <div style="font-size:28px;opacity:0.3;margin-bottom:8px;">🖼️</div>
+            <div style="font-family:var(--font-sans);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);">FOTO DO MECÂNICO 1</div>
+          </div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Nome do Mecânico 1</div>
+          <div class="team-role">Mecânico Sênior</div>
+          <div class="team-bio">Reconhecido pelos clientes como um dos mecânicos mais confiáveis e competentes da região. Anos de experiência traduzidos em diagnósticos precisos e soluções definitivas.</div>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-card-img" style="flex-direction:column;gap:10px;">
+          <div style="border:2px dashed rgba(255,255,255,0.2);border-radius:4px;padding:18px 32px;text-align:center;">
+            <div style="font-size:28px;opacity:0.3;margin-bottom:8px;">🖼️</div>
+            <div style="font-family:var(--font-sans);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);">FOTO DO MECÂNICO 2</div>
+          </div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-name">Nome do Mecânico 2</div>
+          <div class="team-role">Especialista Técnico</div>
+          <div class="team-bio">Profissional de excelente qualidade e bom trato, referenciado pelos próprios clientes. Nome do Mecânico 2 alia conhecimento técnico profundo a um atendimento verdadeiramente humano.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA AGENDAMENTO -->
+<section class="cta-section" id="agendar">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <span class="cta-label reveal">Agende agora</span>
+    <h2 class="cta-title reveal reveal-delay-1">Seu carro merece<br><em>o melhor cuidado.</em></h2>
+    <p class="cta-text reveal reveal-delay-2">Entre em contato agora mesmo pelo WhatsApp e agende seu serviço com quem entende, respeita e se importa com você e com o seu veículo. Resposta rápida, atendimento humanizado.</p>
+    <a href="#" target="_blank" class="btn-whatsapp reveal reveal-delay-3">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar pelo WhatsApp agora
+    </a>
+    <p class="cta-note reveal reveal-delay-4">Segunda a sexta: 07h30 às 17h30 · Sábado: 07h30 às 11h30</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="section-label reveal">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">Dúvidas frequentes</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">Perguntas que<br>todo cliente faz.</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          <span class="faq-q-text">Quais serviços vocês realizam?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-text">Realizamos revisão completa, alinhamento e balanceamento, troca de óleo e filtros, manutenção de freios, suspensão, ar-condicionado, injeção eletrônica, correia dentada, motor e muito mais. Entre em contato para confirmar disponibilidade do serviço específico que você precisa.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          <span class="faq-q-text">Vocês fazem diagnóstico do veículo?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-text">Sim! Utilizamos equipamentos modernos para diagnóstico eletrônico completo. Explicamos tudo o que encontramos de forma clara e transparente, sem omissões e sem forçar serviços desnecessários. Você decide o que fazer com a informação completa em mãos.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          <span class="faq-q-text">Fazem revisão completa do veículo?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-text">Com certeza. A revisão automotiva é um dos nossos serviços mais procurados. Realizamos uma checagem completa com relatório detalhado do estado do seu veículo, priorizando sua segurança e a preservação do carro a longo prazo.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          <span class="faq-q-text">Atendem emergências ou panes em viagem?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-text">Temos histórico de atender viajantes que ficaram com problemas no veículo enquanto estavam na sua cidade. Entre em contato pelo WhatsApp ou telefone para verificar disponibilidade e prioridade de atendimento. Fazemos o máximo para ajudar quem precisa.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          <span class="faq-q-text">Quais são os horários de funcionamento?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-text">Funcionamos de segunda a sexta, das 07h30 às 17h30, e aos sábados das 07h30 às 11h30. Domingos e feriados ficamos fechados. Para agendamentos, entre em contato pelo WhatsApp com antecedência para garantir o melhor horário para você.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">
+          <span class="faq-q-text">Trabalham com peças genuínas?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p class="faq-a-text">Trabalhamos com peças de procedência garantida e qualidade comprovada. Prezamos pela transparência: você saberá exatamente quais peças serão utilizadas e aprovará o orçamento antes de qualquer serviço ser iniciado. Sua segurança e satisfação são nossa prioridade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contato">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-label reveal">
+        <span class="section-label-line"></span>
+        <span class="section-label-text">Onde estamos</span>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">Venha nos visitar<br>no bairro.</h2>
+
+      <div class="contact-detail reveal reveal-delay-2">
+        <div class="contact-detail-icon">📍</div>
+        <div>
+          <div class="contact-detail-label">Endereço</div>
+          <div class="contact-detail-value">Rua Exemplo, 000 — Bairro<br>Cidade — UF, 00000-000</div>
+        </div>
+      </div>
+
+      <div class="contact-detail reveal reveal-delay-2">
+        <div class="contact-detail-icon">📞</div>
+        <div>
+          <div class="contact-detail-label">Telefone</div>
+          <div class="contact-detail-value">(XX) XXXX-XXXX</div>
+        </div>
+      </div>
+
+      <div class="contact-detail reveal reveal-delay-3">
+        <div class="contact-detail-icon">🕐</div>
+        <div>
+          <div class="contact-detail-label">Horário de funcionamento</div>
+          <div class="contact-detail-value">
+            Segunda a sexta: 07h30 às 17h30<br>
+            Sábado: 07h30 às 11h30<br>
+            Domingo: Fechado
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-buttons reveal reveal-delay-4">
+        <a href="#" class="btn-call">📞 Ligar agora</a>
+        <a href="#" target="_blank" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-map reveal reveal-delay-2">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.7!2d-34.9!3d-8.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18e9f7b7b7b7b%3A0x0!2sR.%20Agenor%20Lopes%2C%20487%20-%20Boa%20Viagem%2C%20Recife%20-%20PE%2C%2051021-300!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Localização Oficina Exemplo Demonstração">
+      </iframe>
+      <div class="contact-map-overlay">
+        <div class="contact-map-name">Oficina Exemplo Demonstração</div>
+        <div class="contact-map-addr">Rua Exemplo, 000 — Bairro, Cidade/UF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Oficina Exemplo</div>
+        <div class="footer-brand-sub">Oficina Mecânica</div>
+        <p class="footer-brand-text">Há mais de 15 anos sendo a oficina de confiança do bairro, Recife. Honestidade, transparência e qualidade premium para o seu veículo.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navegação</div>
+        <ul class="footer-links">
+          <li><a href="#sobre">Sobre a oficina</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contato</div>
+        <ul class="footer-links">
+          <li><a href="#">(XX) XXXX-XXXX</a></li>
+          <li><a href="#" target="_blank">WhatsApp</a></li>
+          <li style="color:var(--silver); font-size:13px; font-weight:300; line-height:1.6; margin-top:8px">Rua Exemplo, 000<br>Bairro — Cidade/UF</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Oficina Exemplo Demonstração — Boa Viagem, Recife/PE</span>
+      <span class="footer-rights">Site institucional · protótipo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.service-card,.diff-card,.review-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '56px'; ring.style.height = '56px';
+    ring.style.borderColor = 'rgba(192,57,43,0.8)';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '36px'; ring.style.height = '36px';
+    ring.style.borderColor = 'rgba(192,57,43,0.5)';
+  });
+});
+
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
